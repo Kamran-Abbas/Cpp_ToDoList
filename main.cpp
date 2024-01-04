@@ -1,10 +1,15 @@
 #include <iostream>
 #include "stdlib.h"
 
+#include "func.h"
+
 using std::cout;
 
 int main()
 {
+    char* files;
+    std::cin >> files;
+    system("ls");
     bool x = true;
     int choice; 
     while (x == true)
@@ -13,7 +18,8 @@ int main()
         cout << "1. View list\n";
         cout << "2. Add task\n";
         cout << "3. Remove task\n"; 
-        cout << "4. Exit\n";
+        cout << "4. Create new list\n";
+        cout << "5. Exit\n";
         cout << "Option: ";
         std::cin >> choice;
 
@@ -30,6 +36,10 @@ int main()
             cout << choice; x = false;
         }
         else if (choice == 4)
+        {
+            cout << choice; x = false;
+        }
+        else if (choice == 5)
         {
             cout << choice; x = false;
         }
