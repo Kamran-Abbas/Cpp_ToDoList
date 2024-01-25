@@ -3,6 +3,7 @@
 
 #include "func.h"
 
+//naming convention is 6 digits 
 using std::cout;
 
 int main()
