@@ -1,29 +1,15 @@
 #include "func.h"
-#include <stdlib.h>
-
-struct node {
-    char* name;
-    struct node *next;
-};
-
-struct node* head;
-head.name = NULL;
-head.next = NULL;
+#include <fstream>
 
 
 
-void insertNode(char* fileName)
-{
-    struct node* new_node = (struct node*) malloc(sizeof(struct node));
-    new_node -> name = fileName;
-    new_node -> next = head;
-    head = new_node;
-}
+
+//count how many files there are in the file using counter then create an array of size counter
 
 bool anyFiles()
 {
-    fstream checkFile;
-    checkFile.open("ToDos/head.txt", ios::out);
+    std::fstream checkFile;
+    checkFile.open("ToDos/head.txt", std::ios::out);
     if (checkFile.is_open())
     {
         while (!eof())
