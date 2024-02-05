@@ -1,4 +1,5 @@
 #include "func.h"
+#include <stdlib.h>
 
 struct node {
     char* name;
