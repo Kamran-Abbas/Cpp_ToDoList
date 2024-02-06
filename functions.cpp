@@ -1,5 +1,7 @@
 #include "func.h"
+#include <iostream>
 #include <fstream>
+#include <string>
 
 
 
@@ -8,15 +10,18 @@
 
 bool anyFiles()
 {
+    std::string line;
     std::fstream checkFile;
     checkFile.open("ToDos/head.txt", std::ios::out);
     if (checkFile.is_open())
     {
-        while (!eof())
+        while (std::getline(checkFile, line))
         {
-            
+            std::cout << line << std::endl;
+            std::cin >> line;
         }
     }
+    return true;
 }
 
 void viewList()
