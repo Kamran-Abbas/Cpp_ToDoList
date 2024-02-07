@@ -1,4 +1,4 @@
-#include "func.h"
+#include "functions.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,18 +10,22 @@
 
 bool anyFiles()
 {
+    int numLines = 0;
     std::string line;
-    std::fstream checkFile;
-    checkFile.open("ToDos/head.txt", std::ios::out);
+    std::ifstream checkFile("ToDos/head.txt");
+    // checkFile.open("ToDos/head.txt", std::ios::out);
     if (checkFile.is_open())
     {
         while (std::getline(checkFile, line))
         {
-            std::cout << line << std::endl;
-            std::cin >> line;
+            numLines++;
         }
     }
-    return true;
+    if (numLines == 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 void viewList()
