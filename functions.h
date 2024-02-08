@@ -1,5 +1,7 @@
+#include <string>
+
 void viewList();
 void addTask();
 void removeTask();
 void newList();
-bool anyFiles();
+int anyFiles(std::string arr[]);

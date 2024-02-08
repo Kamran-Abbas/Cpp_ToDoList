@@ -8,8 +8,9 @@
 
 //count how many files there are in the file using counter then create an array of size counter
 
-bool anyFiles()
+int anyFiles(std::string arr[])
 {
+    
     int numLines = 0;
     std::string line;
     std::ifstream checkFile("ToDos/head.txt");
@@ -21,11 +22,30 @@ bool anyFiles()
             numLines++;
         }
     }
+
     if (numLines == 0)
     {
-        return true;
+        checkFile.close();
+        return 0;
     }
-    return false;
+    else
+    {
+        
+        
+        if (checkFile.is_open())
+        {
+            while (std::getline(checkFile, line))
+            {
+                for (int i = 0; i < numLines - 1 ; i++)
+                {
+                    checkFile >> arr[i];
+                }
+            }
+        }
+        
+    }
+    checkFile.close();
+    return numLines;
 }
 
 void viewList()
