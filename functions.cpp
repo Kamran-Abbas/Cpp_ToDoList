@@ -10,7 +10,7 @@
 
 int anyFiles(std::string arr[])
 {
-    
+    int i = 0;
     int numLines = 0;
     std::string line;
     std::ifstream checkFile("ToDos/head.txt");
@@ -20,6 +20,8 @@ int anyFiles(std::string arr[])
         while (std::getline(checkFile, line))
         {
             numLines++;
+            arr[i] = line;
+            i++;
         }
     }
 
@@ -27,22 +29,6 @@ int anyFiles(std::string arr[])
     {
         checkFile.close();
         return 0;
-    }
-    else
-    {
-        
-        
-        if (checkFile.is_open())
-        {
-            while (std::getline(checkFile, line))
-            {
-                for (int i = 0; i < numLines - 1 ; i++)
-                {
-                    checkFile >> arr[i];
-                }
-            }
-        }
-        
     }
     checkFile.close();
     return numLines;
