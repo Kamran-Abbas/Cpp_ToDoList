@@ -10,7 +10,6 @@
 
 int anyFiles(std::string arr[])
 {
-    int i = 0;
     int numLines = 0;
     std::string line;
     std::ifstream checkFile("ToDos/head.txt");
@@ -19,9 +18,9 @@ int anyFiles(std::string arr[])
     {
         while (std::getline(checkFile, line))
         {
+            arr[numLines] = line;
             numLines++;
-            arr[i] = line;
-            i++;
+            
         }
     }
 
@@ -34,7 +33,7 @@ int anyFiles(std::string arr[])
     return numLines;
 }
 
-void viewList()
+void viewList(std::string listName)
 {
 
 }

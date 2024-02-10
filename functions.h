@@ -1,6 +1,6 @@
 #include <string>
 
-void viewList();
+void viewList(std::string listName);
 void addTask();
 void removeTask();
 void newList();

@@ -34,12 +34,16 @@ int main()
         cout << "5. Exit\n";
         cout << "Option: ";
         std::cin >> choice;
+        cout << std::endl;
 
         int FILES = anyFiles(lists);
         
 
         if (choice == 1)
         {
+            std::string listName;
+            int listChoice;
+            bool listCheck = true;
             //cout << choice; 
             x = false;
             if (FILES == 0)
@@ -49,10 +53,26 @@ int main()
             }
             else 
             {
+                cout << "Choose a list to view: \n";
                 for (int i = 0; i < FILES; i++)
                 {
-                    cout << lists[i];
+                    cout << i+1 <<". " << lists[i] << "\n";
                 }
+                while (listCheck)
+                {
+                    cout << "Option: ";
+                    std::cin >> listChoice;
+                    if (listChoice > FILES)
+                    {
+                        cout << "Invalid Option! Try Again\n";
+                    }
+                    else
+                    {
+                        listName = lists[listChoice];
+                        listCheck = false;
+                    }
+                }
+                viewList(listName);
 
             }
             // cout << FILES << "\n";
