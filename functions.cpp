@@ -35,7 +35,21 @@ int anyFiles(std::string arr[])
 
 void viewList(std::string listName)
 {
+    // int counter = 1;
+    std::string line;
+    std::ifstream listFile("ToDos/" + listName + ".txt");
 
+    std::cout << std::endl;
+    if (listFile.is_open())
+    {
+        std::cout << "KEY: O = INCOMPLETE   X = COMPLETE \n";
+        while (std::getline(listFile, line))
+        {
+            std::cout << line << "\n";
+        }
+        system("pause");
+        std::cout << std::endl;
+    }
 }
 
 

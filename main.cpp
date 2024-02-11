@@ -7,7 +7,7 @@
 const int MAX_SIZE = 50;
 std::string lists[MAX_SIZE];
 //if num lists > 50 then get user to delete some
-
+//data in lists begin with O (Incomplete) or X (complete)
 //g++ main.cpp functions.cpp functions.h -o todo
 
 //naming convention is 6 digits 
@@ -45,11 +45,11 @@ int main()
             int listChoice;
             bool listCheck = true;
             //cout << choice; 
-            x = false;
+            // x = false;
             if (FILES == 0)
             {
                 cout << "There are no lists that exist\n ";
-                x = true;
+                // x = true;
             }
             else 
             {
@@ -68,7 +68,7 @@ int main()
                     }
                     else
                     {
-                        listName = lists[listChoice];
+                        listName = lists[listChoice - 1];
                         listCheck = false;
                     }
                 }
