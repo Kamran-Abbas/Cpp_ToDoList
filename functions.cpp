@@ -35,9 +35,11 @@ int anyFiles(std::string arr[])
 
 void viewList(std::string listName)
 {
-    // int counter = 1;
+    bool x = true;
+    int choice;
+    
     std::string line;
-    std::ifstream listFile("ToDos/" + listName + ".txt");
+    std::fstream listFile("ToDos/" + listName + ".txt");
 
     std::cout << std::endl;
     if (listFile.is_open())
@@ -47,9 +49,55 @@ void viewList(std::string listName)
         {
             std::cout << line << "\n";
         }
-        system("pause");
+        // system("pause");
         std::cout << std::endl;
     }
+
+    do
+    {
+        std::cout << "Select an option: \n";
+        std::cout << "1. Edit Status of task\n";
+        std::cout << "2. Return to main menu\n";
+        std::cout << "Option: ";
+        std::cin >> choice;
+        if (choice == 1)
+        {
+            bool y = true;
+            int counter = 1;
+            int listChoice;
+
+            if (listFile.is_open())
+            {
+                std::cout << "KEY: O = INCOMPLETE   X = COMPLETE \n";
+                while (std::getline(listFile, line))
+                {
+                    std::cout << counter << ". " << line << "\n";
+                    counter++;
+                }
+                // system("pause");
+                while (y)
+                {
+                    std::cout << std::endl;
+                    std::cout << "Enter number of task to edit or enter 0 to return to main menu\n ";
+                    std::cout << "Task: ";
+                    std::cin >> listChoice;
+
+                    if (listChoice = 0)
+                    {
+                        y = x = false;
+                    } 
+                    else
+                    {
+                        //add code to go to the line and change the status of the task
+                    }
+                }
+                
+            }
+        }    
+    }
+    while (x);
+
+    
 }
 
 
