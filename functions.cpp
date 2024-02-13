@@ -51,6 +51,7 @@ void viewList(std::string listName)
         }
         // system("pause");
         std::cout << std::endl;
+        listFile.close();
     }
 
     do
@@ -62,10 +63,12 @@ void viewList(std::string listName)
         std::cin >> choice;
         if (choice == 1)
         {
+            
             bool y = true;
             int counter = 1;
             int listChoice;
 
+            std::fstream listFile("ToDos/" + listName + ".txt");
             if (listFile.is_open())
             {
                 std::cout << "KEY: O = INCOMPLETE   X = COMPLETE \n";
@@ -74,24 +77,79 @@ void viewList(std::string listName)
                     std::cout << counter << ". " << line << "\n";
                     counter++;
                 }
+                
+                listFile.close();
                 // system("pause");
                 while (y)
                 {
                     std::cout << std::endl;
-                    std::cout << "Enter number of task to edit or enter 0 to return to main menu\n ";
+                    std::cout << "Enter number of task to edit or enter 0 to return to main menu\n";
                     std::cout << "Task: ";
                     std::cin >> listChoice;
 
-                    if (listChoice = 0)
+                    if (listChoice == 0)
                     {
                         y = x = false;
+                    }
+                    else if (listChoice > (counter - 1))
+                    {
+                        std::cout << "Invalid Options - Try Again \n";
                     } 
                     else
                     {
                         //add code to go to the line and change the status of the task
-                    }
+                        counter = 1;
+                        // std::fstream listFile("ToDos/" + listName + ".txt");
+                        std::fstream tmpFile;
+                        tmpFile.open("ToDos/tmp.txt");
+                        if (tmpFile.is_open())
+                        {
+                            if (listFile.is_open())
+                            {
+                                while (std::getline(listFile, line))
+                                {
+                                    if (counter == listChoice)
+                                    {
+                                        if (line[0] == 'O')
+                                        {
+                                            line[0] = 'X';
+                                        }
+                                        else if (line[0] == 'X')
+                                        {
+                                            line[0] = 'O';
+                                        }     
+                                        std::cout << "Test 1\n";
+                                    }
+                                    tmpFile << line;
+                                    counter++;
+                                    std::cout << "test 1.5\n";
+                                }
+                            }
+                            listFile.close();
+                            std::cout << "test 2\n";
+                        }
+                        tmpFile.close();
+
+                        // std::fstream listFile;
+                        listFile.open("ToDos/" + listName + ".txt");
+
+                        // std::fstream tmpFile("ToDos/tmp.txt");
+
+                        if (listFile.is_open())
+                        {
+                            if (tmpFile.is_open())
+                            {
+                                while (std::getline(tmpFile, line))
+                                {
+                                    listFile << line;
+                                }
+                            }  
+                            std::cout << "test 3";
+                            tmpFile.close();
+                        }
+                    }   listFile.close();   
                 }
-                
+                std::cout << "Status changed successfully\n";
             }
         }    
     }
