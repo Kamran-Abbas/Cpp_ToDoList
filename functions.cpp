@@ -150,6 +150,7 @@ void viewList(std::string listName)
                     }   listFile.close();   
                 }
                 std::cout << "Status changed successfully\n";
+                //needs more testing
             }
         }    
     }
