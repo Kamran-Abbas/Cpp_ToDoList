@@ -6,16 +6,15 @@
 
 const int MAX_SIZE = 50;
 std::string lists[MAX_SIZE];
+
+using std::cout;
+
 //if num lists > 50 then get user to delete some
 //data in lists begin with O (Incomplete) or X (complete)
 //g++ main.cpp functions.cpp functions.h -o todo
 
-
-//errors in functions.cpp with .txt file not opening and therefore it not working
-
-
 //naming convention is 6 digits 
-using std::cout;
+
 
 
 int main()
