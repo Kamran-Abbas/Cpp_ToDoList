@@ -99,15 +99,16 @@ void viewList(std::string listName)
                     {
                         //add code to go to the line and change the status of the task
                         counter = 1;
-                        // std::fstream listFile("ToDos/" + listName + ".txt");
+                        std::fstream listFile("ToDos/" + listName + ".txt");
                         std::fstream tmpFile;
-                        tmpFile.open("ToDos/tmp.txt");
+                        tmpFile.open("ToDos/tmp.txt", std::fstream::out);
                         if (tmpFile.is_open())
                         {
                             if (listFile.is_open())
                             {
                                 while (std::getline(listFile, line))
                                 {
+                                    // std::cout << line[0];
                                     if (counter == listChoice)
                                     {
                                         if (line[0] == 'O')
@@ -118,22 +119,19 @@ void viewList(std::string listName)
                                         {
                                             line[0] = 'O';
                                         }     
-                                        std::cout << "Test 1\n";
                                     }
-                                    tmpFile << line;
+                                    tmpFile << line << std::endl;
                                     counter++;
-                                    std::cout << "test 1.5\n";
                                 }
                             }
-                            listFile.close();
-                            std::cout << "test 2\n";
                         }
                         tmpFile.close();
+                        listFile.close();
 
                         // std::fstream listFile;
-                        listFile.open("ToDos/" + listName + ".txt");
+                        listFile.open("ToDos/" + listName + ".txt", std::fstream::out);
 
-                        // std::fstream tmpFile("ToDos/tmp.txt");
+                        tmpFile.open("ToDos/tmp.txt");
 
                         if (listFile.is_open())
                         {
@@ -141,16 +139,26 @@ void viewList(std::string listName)
                             {
                                 while (std::getline(tmpFile, line))
                                 {
-                                    listFile << line;
+                                    listFile << line << std::endl;
                                 }
                             }  
-                            std::cout << "test 3";
                             tmpFile.close();
                         }
                     }   listFile.close();   
+                    std::cout << "Status changed successfully\n";
+
+                    std::fstream listFile("ToDos/" + listName + ".txt");
+                    counter = 1;
+                    if (listFile.is_open())
+                    {
+                        std::cout << "KEY: O = INCOMPLETE   X = COMPLETE \n";
+                        while (std::getline(listFile, line))
+                        {
+                            std::cout << counter << ". " << line << "\n";
+                            counter++;
+                        }
+                    }
                 }
-                std::cout << "Status changed successfully\n";
-                //needs more testing
             }
         }    
     }
