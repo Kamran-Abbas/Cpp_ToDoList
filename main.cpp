@@ -82,7 +82,40 @@ int main()
         }
         else if (choice == 2)
         {
-            cout << choice; x = false;
+            std::string listName;
+            int listChoice;
+            bool listCheck = true;
+            //cout << choice; 
+            // x = false;
+            if (FILES == 0)
+            {
+                cout << "There are no lists that exist\n ";
+                // x = true;
+            }
+            else 
+            {
+                cout << "Choose a list to add to: \n";
+                for (int i = 0; i < FILES; i++)
+                {
+                    cout << i+1 <<". " << lists[i] << "\n";
+                }
+                while (listCheck)
+                {
+                    cout << "Option: ";
+                    std::cin >> listChoice;
+                    if (listChoice > FILES || listChoice <= 0)
+                    {
+                        cout << "Invalid Option! Try Again\n";
+                    }
+                    else
+                    {
+                        listName = lists[listChoice - 1];
+                        listCheck = false;
+                    }
+                }
+                addTask(listName);
+
+            }
         }
         else if (choice == 3)
         {

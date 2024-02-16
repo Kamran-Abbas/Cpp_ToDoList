@@ -168,7 +168,7 @@ void viewList(std::string listName)
 }
 
 
-void addTask()
+void addTask(std::string listName)
 {
 
 }
