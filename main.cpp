@@ -65,7 +65,7 @@ int main()
                 {
                     cout << "Option: ";
                     std::cin >> listChoice;
-                    if (listChoice > FILES)
+                    if (listChoice > FILES || listChoice <= 0)
                     {
                         cout << "Invalid Option! Try Again\n";
                     }
