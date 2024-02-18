@@ -170,6 +170,53 @@ void viewList(std::string listName)
 
 void addTask(std::string listName)
 {
+    bool x = true;
+    while (x)
+    {
+        
+        std::string choice;
+        
+        std::string line;
+        std::fstream listFile("ToDos/" + listName + ".txt");
+
+        std::cout << std::endl;
+        if (listFile.is_open())
+        {
+            std::cout << "KEY: O = INCOMPLETE   X = COMPLETE \n";
+            while (std::getline(listFile, line))
+            {
+                std::cout << line << "\n";
+            }
+            // system("pause");
+            std::cout << std::endl;
+            listFile.close();
+        }
+
+        std::string confirm;
+
+    
+        std::cout << "Type the task to add of enter 0 to return to the main menu: ";
+        std::cin >> choice;
+
+        if (choice == "0")
+        {x = false;}
+        else
+        {
+            std::cout << "Enter 'Y' to confirm that you would like to add '" + choice + "' to the list: ";
+            std::cin >> confirm;
+            if (confirm != "Y")
+            {}
+            else
+            {
+                std::ofstream outListFile("ToDos/" + listName + ".txt", std::ios::app);
+                outListFile << "O " << choice << std::endl;
+                outListFile.close();
+            }
+
+        }
+    }
+
+
 
 }
 
