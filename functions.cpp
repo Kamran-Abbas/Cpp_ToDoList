@@ -221,7 +221,7 @@ void addTask(std::string listName)
 }
 
 
-void removeTask()
+void removeTask(std::string listName)
 {
 
 }
