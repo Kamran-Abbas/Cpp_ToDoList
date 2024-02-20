@@ -223,7 +223,28 @@ void addTask(std::string listName)
 
 void removeTask(std::string listName)
 {
+    bool x = true;
+    while (x)
+    {
+        
+        std::string choice;
+        
+        std::string line;
+        std::fstream listFile("ToDos/" + listName + ".txt");
 
+        std::cout << std::endl;
+        if (listFile.is_open())
+        {
+            std::cout << "KEY: O = INCOMPLETE   X = COMPLETE \n";
+            while (std::getline(listFile, line))
+            {
+                std::cout << line << "\n";
+            }
+            // system("pause");
+            std::cout << std::endl;
+            listFile.close();
+        }
+    }
 }
 
 
