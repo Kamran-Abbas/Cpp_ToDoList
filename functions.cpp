@@ -160,6 +160,11 @@ void viewList(std::string listName)
                     }
                 }
             }
+        }
+        else if (choice == 2)
+        {
+            x = false;
+            std::cout << std::endl;
         }    
     }
     while (x);
@@ -230,6 +235,8 @@ void removeTask(std::string listName)
         std::string choice;
         
         std::string line;
+        int counter = 1;
+
         std::fstream listFile("ToDos/" + listName + ".txt");
 
         std::cout << std::endl;
@@ -238,11 +245,77 @@ void removeTask(std::string listName)
             std::cout << "KEY: O = INCOMPLETE   X = COMPLETE \n";
             while (std::getline(listFile, line))
             {
-                std::cout << line << "\n";
+                std::cout << counter << ". " << line << "\n";
+                counter++;
             }
             // system("pause");
             std::cout << std::endl;
             listFile.close();
+        }
+
+        int choices;
+        bool y = true;
+        while (y)
+        {
+            std::cout << "Enter the number of the task to delete or 0 to go back to the main menu\n";
+            std::cout << "Task: ";
+            std::cin >> choices;
+            if (choices == 0)
+            {
+                x = y = false;
+                std::cout << "test 0" <<std::endl;
+            }
+            else if(choices > counter - 1)
+            {
+                std::cout << "Invalid Option - Try Again! \n";
+            } 
+            else
+            {
+                counter = 1;
+                listFile.open("ToDos/" + listName + ".txt");
+                std::cout << "test 1";
+                std::fstream tmpFile;
+                tmpFile.open("ToDos/tmp.txt", std::fstream::out);
+                std::cout << "test 2";
+                if (listFile.is_open())
+                {
+                    std::cout << "test 3";
+                    if (tmpFile.is_open())
+                    {
+                        std::cout << "test 4";
+                        while (std::getline(listFile, line))
+                        {
+                            if (counter != choices)
+                            {
+                                std::cout << "test 5";
+                                tmpFile << line << std::endl;
+                            }
+                            counter++;
+                        }
+                        
+                    }
+                }
+                listFile.close();
+                tmpFile.close();
+                std::cout << "test 6";
+
+                listFile.open("ToDos/" + listName + ".txt", std::fstream::out);
+                tmpFile.open("ToDos/tmp.txt", std::fstream::in);
+
+                if (listFile.is_open())
+                {
+                    if (tmpFile.is_open())
+                    {
+                        while (std::getline(tmpFile, line))
+                        {
+                            listFile << line << std::endl;
+                            std::cout << "test 7";
+                        }
+                    }
+                }
+                listFile.close();
+                tmpFile.close();
+            }
         }
     }
 }
