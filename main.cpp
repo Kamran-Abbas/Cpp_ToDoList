@@ -156,7 +156,38 @@ int main()
         }
         else if (choice == 4)
         {
-            cout << choice; x = false;
+            int descion;
+            cout << "Choose an option\n";
+            cout << "1. Create a new list\n";
+            cout << "2. Delete a list\n";
+            cout << "3. Cancel\n";
+            cout << "Choice: ";
+            std::cin >> descion;
+            cout << std::endl;
+
+            if (descion == 1)
+            {
+                bool x = true
+                while (x)
+                {
+                    if (FILES >= MAX_SIZE)
+                    {
+                        cout << "Error! - Too many lists! - Delete a list to create a new one \n";
+
+                        //add code to delete to let the user delete the neccessary number of files
+
+                    }
+                    else 
+                    {
+                        x = false;
+                    }
+                }
+                addTask()
+            }
+            else if (descion == 2)
+            {
+                deleteList(lists);
+            }
         }
         else if (choice == 5)
         {
