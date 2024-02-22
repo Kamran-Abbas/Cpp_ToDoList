@@ -167,7 +167,7 @@ int main()
 
             if (descion == 1)
             {
-                bool x = true
+                bool x = true;
                 while (x)
                 {
                     if (FILES >= MAX_SIZE)
@@ -182,7 +182,7 @@ int main()
                         x = false;
                     }
                 }
-                addTask()
+                makeList();
             }
             else if (descion == 2)
             {
