@@ -326,7 +326,7 @@ void makeList()
     //add code to create a newList and add it to head.txt
 }
 
-void deleteList(std::string arr[])
+bool deleteList(std::string arr[])
 {
     //add code to delete a list and remove it from head.txt
 }

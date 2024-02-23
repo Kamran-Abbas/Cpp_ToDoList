@@ -168,21 +168,35 @@ int main()
             if (descion == 1)
             {
                 bool x = true;
-                while (x)
+                bool stillAdd = true;
+                do
                 {
                     if (FILES >= MAX_SIZE)
                     {
                         cout << "Error! - Too many lists! - Delete a list to create a new one \n";
+                        cout << std::endl;
 
-                        //add code to delete to let the user delete the neccessary number of files
-
+                        stillAdd = deleteList(lists);  //returns 0 if user doesnt want to delete any lists or 1 if user has deleted a list
+                        if (stillAdd)
+                        {
+                            FILES = anyFiles(lists);
+                            if (FILES < MAX_SIZE)
+                            {
+                                x = false;
+                            }
+                        }
+                        else {x = false;}
                     }
                     else 
                     {
                         x = false;
                     }
                 }
-                makeList();
+                while (x);
+                if (stillAdd)
+                {
+                    makeList();
+                }
             }
             else if (descion == 2)
             {
