@@ -329,4 +329,8 @@ void makeList()
 bool deleteList(std::string arr[])
 {
     //add code to delete a list and remove it from head.txt
+
+
+
+    return true;
 }
