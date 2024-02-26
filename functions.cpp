@@ -324,6 +324,17 @@ void removeTask(std::string listName)
 void makeList()
 {
     //add code to create a newList and add it to head.txt
+    std::string listName;
+    std::cout << std::endl << "Enter a name for the list or enter 0 to cancel: ";
+    std::cin >> listName;
+
+    if (listName == "0")
+    {
+        return;
+    } 
+    std::fstream newList("ToDos/" + listName + ".txt", std::ios::out);
+    std::fstream headFile("ToDos/head.txt", std::ios::app);
+    headFile << "\n" << listName;
 }
 
 bool deleteList(std::string arr[])
