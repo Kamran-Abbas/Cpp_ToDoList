@@ -176,7 +176,7 @@ int main()
                         cout << "Error! - Too many lists! - Delete a list to create a new one \n";
                         cout << std::endl;
 
-                        stillAdd = deleteList(lists);  //returns 0 if user doesnt want to delete any lists or 1 if user has deleted a list
+                        stillAdd = deleteList(lists, FILES);  //returns 0 if user doesnt want to delete any lists or 1 if user has deleted a list
                         if (stillAdd)
                         {
                             FILES = anyFiles(lists);
@@ -196,11 +196,12 @@ int main()
                 if (stillAdd)
                 {
                     makeList();
+                    FILES = anyFiles(lists);
                 }
             }
             else if (descion == 2)
             {
-                deleteList(lists);
+                deleteList(lists, FILES);
             }
         }
         else if (choice == 5)

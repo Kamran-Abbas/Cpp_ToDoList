@@ -337,9 +337,10 @@ void makeList()
     headFile << "\n" << listName;
 }
 
-bool deleteList(std::string arr[])
+bool deleteList(std::string arr[], int numLists)
 {
     //add code to delete a list and remove it from head.txt
+    for (int i = 0; i < numLists - 1)
 
 
 
