@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdio.h>
 
 
 
@@ -263,7 +264,7 @@ void removeTask(std::string listName)
             if (choices == 0)
             {
                 x = y = false;
-                std::cout << "test 0" <<std::endl;
+                // std::cout << "test 0" <<std::endl;
             }
             else if(choices > counter - 1)
             {
@@ -273,21 +274,21 @@ void removeTask(std::string listName)
             {
                 counter = 1;
                 listFile.open("ToDos/" + listName + ".txt");
-                std::cout << "test 1";
+                // std::cout << "test 1";
                 std::fstream tmpFile;
                 tmpFile.open("ToDos/tmp.txt", std::fstream::out);
-                std::cout << "test 2";
+                // std::cout << "test 2";
                 if (listFile.is_open())
                 {
-                    std::cout << "test 3";
+                    // std::cout << "test 3";
                     if (tmpFile.is_open())
                     {
-                        std::cout << "test 4";
+                        // std::cout << "test 4";
                         while (std::getline(listFile, line))
                         {
                             if (counter != choices)
                             {
-                                std::cout << "test 5";
+                                // std::cout << "test 5";
                                 tmpFile << line << std::endl;
                             }
                             counter++;
@@ -297,7 +298,7 @@ void removeTask(std::string listName)
                 }
                 listFile.close();
                 tmpFile.close();
-                std::cout << "test 6";
+                // std::cout << "test 6";
 
                 listFile.open("ToDos/" + listName + ".txt", std::fstream::out);
                 tmpFile.open("ToDos/tmp.txt", std::fstream::in);
@@ -309,7 +310,7 @@ void removeTask(std::string listName)
                         while (std::getline(tmpFile, line))
                         {
                             listFile << line << std::endl;
-                            std::cout << "test 7";
+                            // std::cout << "test 7";
                         }
                     }
                 }
@@ -339,10 +340,95 @@ void makeList()
 
 bool deleteList(std::string arr[], int numLists)
 {
-    //add code to delete a list and remove it from head.txt
-    for (int i = 0; i < numLists - 1)
 
+    const std::string headPath = "ToDos/head.txt";
+    const std::string tmpPath = "ToDos/tmp.txt";
+    std::string fileToDelete;
+    for (int i = 0; i < numLists; i++)
+    {
+        std::cout << i + 1 << ". " << arr[i] << "\n";
+    }
+    int choice;
+    bool x = true;
+    while (x)
+    {
+        std::cout << "Enter the number for the list to delete or 0 to cancel: ";
+        std::cin >> choice;
+        if (choice == 0)
+        {
+            return false;
+        }
+        else if (choice > numLists || choice < 0)
+        {
+            std::cout << "Invalid - Try Again\n";
+        }
+        else
+        {
+            fileToDelete = "ToDos/" + arr[choice - 1] + ".txt";
+            x = false;
+        }
+    }
 
+    if (remove(fileToDelete.c_str()) != 0)
+    {
+        std::cout << "Error occurred! - Try Again\n";
+        return false;
+    }
 
+    int counter = 1;
+    int linesWritten = 0;
+    std::string line;
+    std::fstream headFile;
+    std::fstream tmpFile;
+    headFile.open(headPath);
+    tmpFile.open(tmpPath, std::ios::out);
+    if (headFile.is_open())
+    {
+        if (tmpFile.is_open())
+        {
+            while(getline(headFile, line))
+            {
+                if (counter != choice)
+                {
+                    if (linesWritten != 0)
+                    {
+                        tmpFile << "\n" << line;
+                    }
+                    else
+                    {
+                        tmpFile << line;
+                        linesWritten++;
+                    }
+                }
+                counter++;
+            }
+        }
+    }
+    headFile.close();
+    tmpFile.close();
+
+    linesWritten = 0;
+    headFile.open(headPath, std::ios::out);
+    tmpFile.open(tmpPath);
+    if (headFile.is_open())
+    {
+        if (tmpFile.is_open())
+        {
+            while(getline(tmpFile, line))
+            {
+                if (linesWritten != 0)
+                {
+                    headFile << "\n" << line; 
+                }
+                else
+                {
+                    headFile << line;  
+                    linesWritten++;
+                }
+            }
+        }
+    }
+    headFile.close();
+    tmpFile.close();
     return true;
 }
